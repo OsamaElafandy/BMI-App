@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../main.dart';
+import '/view/inputPage/input_page.dart';
 
 class ButtomButton extends StatelessWidget {
   final Function onTap;

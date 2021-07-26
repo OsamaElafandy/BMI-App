@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ibmapp/view/resultPage/result_page.dart';
-import 'package:ibmapp/viewModel/ibmNotifier.dart';
 
 import 'view/inputPage/input_page.dart';
 
-final ibm = ChangeNotifierProvider<IbmNotifier>((ref) => IbmNotifier());
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(ProviderScope(child: MyApp()));

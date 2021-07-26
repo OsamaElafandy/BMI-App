@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../main.dart';
+import 'package:ibmapp/viewModel/ibmNotifier.dart';
 import '../../utils/color.dart';
 import '../../utils/gender.dart';
-import '../../view/resultPage/result_page.dart';
 import '../../view/widgets/button.dart';
 import '../../view/widgets/reusable_Card.dart';
 import '../../view/widgets/round_icon_button.dart';
 import '../widgets/icon_content.dart';
 
-@immutable
-class InputPage extends ConsumerWidget {
+final ibm = ChangeNotifierProvider<IbmNotifier>((ref) => IbmNotifier());
+
+class InputPage extends StatefulWidget {
   static String id = '/';
+
+  @override
+  _InputPageState createState() => _InputPageState();
+}
+
+class _InputPageState extends State<InputPage> {
   Gender? selectGender;
 
   int height = 180;
@@ -22,14 +28,14 @@ class InputPage extends ConsumerWidget {
   int age = 20;
 
   @override
-  Widget build(BuildContext context, watch) {
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
-    final ibmNofi = watch(ibm);
-
-    ibmNofi.height = height;
-    ibmNofi.weight = weight;
-    ibmNofi.age = age;
     return Scaffold(
         appBar: AppBar(
           title: Text('BMI CALCULATOR'),
@@ -78,30 +84,34 @@ class InputPage extends ConsumerWidget {
                     'HEIGHT',
                     style: TextStyle(fontSize: 18.0, color: Color(0xFF8D8E98)),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.baseline,
-                    textBaseline: TextBaseline.alphabetic,
-                    children: [
-                      Consumer(
-                        builder: (BuildContext context,
-                            T Function<T>(ProviderBase<Object?, T>) watch,
-                            Widget? child) {
-                          return Text(
-                            ibmNofi.height.toString(),
-                            style: TextStyle(
-                                fontSize: w * .1, fontWeight: FontWeight.w900),
-                          );
-                        },
-                      ),
-                      Text(
-                        'cm',
-                        style: TextStyle(
-                          fontSize: w * .04,
-                          color: Color(0xFF8D8E98),
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.alphabetic,
+                      children: [
+                        Consumer(
+                          builder: (BuildContext context,
+                              T Function<T>(ProviderBase<Object?, T>) watch,
+                              Widget? child) {
+                            final h = watch(ibm).height;
+                            return Text(
+                              h.toString(),
+                              style: TextStyle(
+                                  fontSize: w * .1,
+                                  fontWeight: FontWeight.w900),
+                            );
+                          },
                         ),
-                      ),
-                    ],
+                        Text(
+                          'cm',
+                          style: TextStyle(
+                            fontSize: w * .04,
+                            color: Color(0xFF8D8E98),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   SliderTheme(
                     data: SliderTheme.of(context).copyWith(
@@ -113,13 +123,13 @@ class InputPage extends ConsumerWidget {
                         overlayShape:
                             RoundSliderOverlayShape(overlayRadius: 20.0)),
                     child: Slider(
-                        //TODO
-                        value: height.toDouble(),
+                        //TODO hh
+                        value: 180.0,
                         min: 120.0,
                         max: 220.0,
                         inactiveColor: Color(0xFF8D8E98),
-                        onChanged: (double newValue) {
-                          //TODO  // height = newValue.toInt();
+                        onChanged: (newValue) {
+                          context.read(ibm).height = newValue.round();
                         }),
                   )
                 ],
@@ -148,7 +158,8 @@ class InputPage extends ConsumerWidget {
                             T Function<T>(ProviderBase<Object?, T>) watch,
                             Widget? child) {
                           return Text(
-                            ibmNofi.weight.toString(),
+                            "Weight 156",
+                            //TODO    ibmNofi.weight.toString(),
                             style: TextStyle(
                                 fontSize: w * .1, fontWeight: FontWeight.w900),
                           );
@@ -202,7 +213,8 @@ class InputPage extends ConsumerWidget {
                               T Function<T>(ProviderBase<Object?, T>) watch,
                               Widget? child) {
                             return Text(
-                              ibmNofi.age.toString(),
+                              //TODO    ibmNofi.age.toString(),
+                              "Age 351",
                               style: TextStyle(
                                   fontSize: w * .1,
                                   fontWeight: FontWeight.w900),
@@ -244,12 +256,12 @@ class InputPage extends ConsumerWidget {
             ButtomButton(
                 buttonTitle: "CALCULATE",
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
+                  /* Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => ResultPage(
                             bmiresult: context.read(ibm).calculatBMI(),
                             interpretation: context.read(ibm).getInterpeation(),
                             resultText: context.read(ibm).getResult(),
-                          )));
+                          )));*/
                   // CalculatorBrain calc =CalculatorBrain(height: height,weight: weight);
                 })
           ],
