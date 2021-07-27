@@ -1,86 +1,75 @@
 import 'dart:math';
-
 import 'package:flutter/foundation.dart';
+import 'package:ibmapp/model/ibm.dart';
 import 'package:ibmapp/utils/gender.dart';
 
 class IbmNotifier with ChangeNotifier {
-  late int _height;
-  late int _weight;
-  late int _age;
-  late double _bmi;
-  late dynamic _selectGender;
+  late Ibm _ibm;
 
-  int get height => _height;
-  int get weight => _weight;
-  double get bmi => _bmi;
-  int get age => _age;
-  dynamic get selectGender => _selectGender;
+  Ibm get ibm => _ibm;
 
-  set height(int newValue) {
-    _height = newValue;
+  set ibm(Ibm ibm) {
+    _ibm = ibm;
     notifyListeners();
   }
 
-  set weight(int newValue) {
-    _weight = newValue;
+  int increaseW() {
+    var w = ibm.weight!;
     notifyListeners();
+    return w++;
   }
 
-  set age(int age) {
-    _age = age;
+  int decreaseW() {
+    var w = ibm.weight!;
     notifyListeners();
+    return w--;
   }
 
-  increaseW() {
-    _weight++;
+  int increaseH() {
+    var h = ibm.height!;
     notifyListeners();
+    return h++;
   }
 
-  decreaseW() {
-    _weight--;
+  int decreaseH() {
+    var h = ibm.height!;
     notifyListeners();
+    return h--;
   }
 
-  increaseH() {
-    _height++;
+  int decreaseA() {
+    var s = ibm.age!;
     notifyListeners();
+    return s--;
   }
 
-  decreaseH() {
-    _height--;
+  int increaseA() {
+    var s = ibm.age!;
     notifyListeners();
-  }
-
-  decreaseA() {
-    _age--;
-    notifyListeners();
-  }
-
-  increaseA() {
-    _age++;
-    notifyListeners();
+    return s++;
   }
 
   selectGenderM() {
-    _selectGender = Gender.Male;
+    ibm.selectGender = Gender.Male;
     notifyListeners();
   }
 
   selectGenderF() {
-    _selectGender = Gender.Female;
+    ibm.selectGender = Gender.Female;
     notifyListeners();
   }
 
   String calculatBMI() {
-    _bmi = weight / pow(height / 100, 2);
+    var result = ibm.bmi;
+    result = ibm.weight! / pow((ibm.height! / 100), 2);
     notifyListeners();
-    return _bmi.toStringAsFixed(1);
+    return result.toStringAsFixed(1);
   }
 
   String getResult() {
-    if (_bmi >= 25) {
+    if (ibm.bmi! >= 25) {
       return 'Overweight';
-    } else if (_bmi > 18.5) {
+    } else if (ibm.bmi! > 18.5) {
       return 'Normal';
     } else {
       return 'Underweight';
@@ -88,9 +77,9 @@ class IbmNotifier with ChangeNotifier {
   }
 
   String getInterpeation() {
-    if (_bmi >= 25) {
+    if (ibm.bmi! >= 25) {
       return 'You have a higher than normal weight. Try exercise more';
-    } else if (_bmi > 18.5) {
+    } else if (ibm.bmi! > 18.5) {
       return 'You have a normal body weight. Good job';
     } else {
       return 'You have a lower than normal body weight. You can a bit more.';

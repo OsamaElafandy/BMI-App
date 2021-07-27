@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:ibmapp/model/ibm.dart';
 import 'package:ibmapp/viewModel/ibmNotifier.dart';
 import '../../utils/color.dart';
 import '../../utils/gender.dart';
@@ -11,29 +12,18 @@ import '../widgets/icon_content.dart';
 
 final ibm = ChangeNotifierProvider<IbmNotifier>((ref) => IbmNotifier());
 
-class InputPage extends StatefulWidget {
+class InputPage extends ConsumerWidget {
+  Gender? selectGender;
   static String id = '/';
 
   @override
-  _InputPageState createState() => _InputPageState();
-}
+  Widget build(BuildContext context, watch) {
+    final go = watch(ibm).ibm;
+    go.age = 10;
+    go.height = 12;
+    go.bmi = 110;
+    go.weight = 13;
 
-class _InputPageState extends State<InputPage> {
-  Gender? selectGender;
-
-  int height = 180;
-
-  int weight = 60;
-
-  int age = 20;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -94,7 +84,7 @@ class _InputPageState extends State<InputPage> {
                           builder: (BuildContext context,
                               T Function<T>(ProviderBase<Object?, T>) watch,
                               Widget? child) {
-                            final h = watch(ibm).height;
+                            var h = go.height;
                             return Text(
                               h.toString(),
                               style: TextStyle(
@@ -124,12 +114,12 @@ class _InputPageState extends State<InputPage> {
                             RoundSliderOverlayShape(overlayRadius: 20.0)),
                     child: Slider(
                         //TODO hh
-                        value: 180.0,
+                        value: go.height!.toDouble(),
                         min: 120.0,
                         max: 220.0,
                         inactiveColor: Color(0xFF8D8E98),
                         onChanged: (newValue) {
-                          context.read(ibm).height = newValue.round();
+                          go.height = newValue.round();
                         }),
                   )
                 ],
