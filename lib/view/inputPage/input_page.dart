@@ -18,11 +18,13 @@ class InputPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, watch) {
-    final go = watch(ibm).ibm;
-    go.age = 10;
-    go.height = 12;
-    go.bmi = 110;
-    go.weight = 13;
+    final controller = watch(ibm);
+    final go = controller.ibm;
+    // final go = watch(ibm).ibm;
+    // go.age = 10;
+    // go.height = 12;
+    // go.bmi = 110;
+    // go.weight = 13;
 
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
@@ -113,14 +115,16 @@ class InputPage extends ConsumerWidget {
                         overlayShape:
                             RoundSliderOverlayShape(overlayRadius: 20.0)),
                     child: Slider(
-                        //TODO hh
-                        value: go.height!.toDouble(),
-                        min: 120.0,
-                        max: 220.0,
-                        inactiveColor: Color(0xFF8D8E98),
-                        onChanged: (newValue) {
-                          go.height = newValue.round();
-                        }),
+                      //TODO hh
+                      value: go.height!.toDouble(),
+                      min: 120.0,
+                      max: 220.0,
+                      inactiveColor: Color(0xFF8D8E98),
+                      onChanged: (newValue) {
+                        go.height = newValue.round();
+                        controller.refresh();
+                      },
+                    ),
                   )
                 ],
               ),

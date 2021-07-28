@@ -1,15 +1,28 @@
 import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:ibmapp/model/ibm.dart';
+import 'package:ibmapp/model/ibm.dart';
 import 'package:ibmapp/utils/gender.dart';
 
 class IbmNotifier with ChangeNotifier {
+  IbmNotifier() {
+    _ibm = Ibm();
+    _ibm.age = 18;
+    _ibm.height = 170;
+    _ibm.weight = 70;
+    _ibm.selectGender = Gender.Male;
+  }
+
   late Ibm _ibm;
 
   Ibm get ibm => _ibm;
 
   set ibm(Ibm ibm) {
     _ibm = ibm;
+    notifyListeners();
+  }
+
+  void refresh() {
     notifyListeners();
   }
 
