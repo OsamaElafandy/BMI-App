@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
-class RoundIconButton extends StatelessWidget {
+class RoundedIconButton extends StatelessWidget {
   final IconData iconData;
-  final Function onPressed;
-  RoundIconButton({required this.iconData, required this.onPressed});
+  final void Function()? onPressed;
+
+  const RoundedIconButton({required this.iconData, required this.onPressed});
+
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
     return RawMaterialButton(
       shape: CircleBorder(),
-      onPressed: onPressed(),
+      onPressed: onPressed,
       child: Icon(iconData),
       constraints: BoxConstraints.tightFor(
         width: w * .12,
