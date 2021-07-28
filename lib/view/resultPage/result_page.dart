@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ibmapp/view/widgets/button.dart';
+import 'package:ibmapp/view/widgets/bottom_button.dart';
 import 'package:ibmapp/view/widgets/reusable_Card.dart';
 
 class ResultPage extends StatelessWidget {
@@ -66,7 +66,7 @@ class ResultPage extends StatelessWidget {
                   ),
                   onPress: () {},
                 )),
-            ButtomButton(
+            BottomButton(
                 buttonTitle: "RE-CALCULATE",
                 onTap: () {
                   Navigator.pop(context);
