@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:ibmapp/model/ibm.dart';
-import 'package:ibmapp/viewModel/ibm_notifier.dart';
+import 'package:ibmapp/model/bmi.dart';
+
+import 'package:ibmapp/view/resultPage/result_page.dart';
+import 'package:ibmapp/viewModel/bmi.dart';
 import '../../utils/color.dart';
-import '../../utils/gender.dart';
 import '../widgets/bottom_button.dart';
 import '../../view/widgets/reusable_Card.dart';
 import '../widgets/rounded_icon_button.dart';
 import '../widgets/icon_content.dart';
 
-final ibm = StateNotifierProvider<IbmNotifier, Ibm>((ref) => IbmNotifier());
+final ibm = StateNotifierProvider<BmiNotifier, Bmi>((ref) => BmiNotifier());
 
 class InputPage extends StatelessWidget {
   static const String id = '/';
@@ -118,11 +119,9 @@ class InputPage extends StatelessWidget {
                         builder: (context, watch, child) {
                           final state = watch(ibm);
                           return Slider(
-                            //TODO hh
                             value: state.height.toDouble(),
                             min: 120.0,
                             max: 220.0,
-
                             inactiveColor: Color(0xFF8D8E98),
                             onChanged: (newValue) {
                               final controller = context.read(ibm.notifier);
@@ -249,16 +248,19 @@ class InputPage extends StatelessWidget {
               ),
             ),
             BottomButton(
-                buttonTitle: "CALCULATE",
-                onTap: () {
-                  /* Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ResultPage(
-                            bmiresult: context.read(ibm).calculatBMI(),
-                            interpretation: context.read(ibm).getInterpeation(),
-                            resultText: context.read(ibm).getResult(),
-                          )));*/
-                  // CalculatorBrain calc =CalculatorBrain(height: height,weight: weight);
-                })
+              buttonTitle: "CALCULATE",
+              onTab: () {
+                context.read(ibm.notifier).calculateBMI();
+                var bmi = context.read(ibm.notifier).bmiGet();
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => ResultPage(
+                          bmiresult: bmi,
+                          interpretation:
+                              context.read(ibm.notifier).getInterpretation(),
+                          resultText: context.read(ibm.notifier).getResult(),
+                        )));
+              },
+            ),
           ],
         ));
   }

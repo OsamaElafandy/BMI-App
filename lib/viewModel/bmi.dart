@@ -1,11 +1,11 @@
 import 'dart:math';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:ibmapp/model/ibm.dart';
+import 'package:ibmapp/model/bmi.dart';
 
-class IbmNotifier extends StateNotifier<Ibm> {
-  IbmNotifier()
+class BmiNotifier extends StateNotifier<Bmi> {
+  BmiNotifier()
       : super(
-          Ibm(
+          Bmi(
             height: 170,
             weight: 70,
             age: 20,
@@ -46,9 +46,14 @@ class IbmNotifier extends StateNotifier<Ibm> {
     setIsMale(false);
   }
 
-  void calculateBMI() {
+  calculateBMI() {
     final double bmi = state.weight / pow((state.height / 100), 2);
     state = state.copyWith(bmi: bmi);
+    return state.bmi.toStringAsFixed(2);
+  }
+
+  bmiGet() {
+    return state.bmi.toStringAsFixed(2);
   }
 
   String getResult() {

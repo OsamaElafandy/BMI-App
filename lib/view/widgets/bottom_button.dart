@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '/view/inputPage/input_page.dart';
 
 class BottomButton extends StatelessWidget {
-  final Function onTap;
   final String buttonTitle;
-
-  BottomButton({required this.buttonTitle, required this.onTap});
+  final Function onTab;
+  BottomButton({required this.buttonTitle, required this.onTab});
 
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
 
     return GestureDetector(
-      onTap: () => {context.read(ibm.notifier).calculateBMI()},
+      onTap: () => onTab(),
       child: Container(
         child: Center(
           child: Text(

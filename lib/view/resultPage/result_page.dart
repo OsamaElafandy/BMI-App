@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ibmapp/view/widgets/bottom_button.dart';
 import 'package:ibmapp/view/widgets/reusable_Card.dart';
 
@@ -39,38 +40,57 @@ class ResultPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Text(
-                        resultText.toUpperCase(),
-                        style: TextStyle(
-                            color: Color(0xFF24D876),
-                            fontSize: 22.0,
-                            fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.center,
+                      Consumer(
+                        builder: (BuildContext context,
+                            T Function<T>(ProviderBase<Object?, T>) watch,
+                            Widget? child) {
+                          return Text(
+                            resultText.toUpperCase(),
+                            style: TextStyle(
+                                color: Color(0xFF24D876),
+                                fontSize: 22.0,
+                                fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.center,
+                          );
+                        },
                       ),
-                      Text(
-                        bmiresult,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: h * .1,
-                        ),
-                        textAlign: TextAlign.center,
+                      Consumer(
+                        builder: (BuildContext context,
+                            T Function<T>(ProviderBase<Object?, T>) watch,
+                            Widget? child) {
+                          return Text(
+                            bmiresult,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: h * .1,
+                            ),
+                            textAlign: TextAlign.center,
+                          );
+                        },
                       ),
-                      Text(
-                        interpretation,
-                        style: TextStyle(
-                          fontSize: h * .035,
-                        ),
-                        textAlign: TextAlign.center,
+                      Consumer(
+                        builder: (BuildContext context,
+                            T Function<T>(ProviderBase<Object?, T>) watch,
+                            Widget? child) {
+                          return Text(
+                            interpretation,
+                            style: TextStyle(
+                              fontSize: h * .035,
+                            ),
+                            textAlign: TextAlign.center,
+                          );
+                        },
                       ),
                     ],
                   ),
                   onPress: () {},
                 )),
             BottomButton(
-                buttonTitle: "RE-CALCULATE",
-                onTap: () {
-                  Navigator.pop(context);
-                })
+              buttonTitle: "RE-CALCULATE",
+              onTab: () {
+                Navigator.pop(context);
+              },
+            )
           ],
         ));
   }

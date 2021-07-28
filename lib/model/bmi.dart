@@ -1,5 +1,5 @@
-class Ibm {
-  const Ibm({
+class Bmi {
+  const Bmi({
     required this.height,
     required this.weight,
     required this.age,
@@ -13,8 +13,8 @@ class Ibm {
   final double bmi;
   final bool isMale;
 
-  factory Ibm.fromMap(Map<String, Object?> data) {
-    return Ibm(
+  factory Bmi.fromMap(Map<String, Object?> data) {
+    return Bmi(
       height: data['height'] as int? ?? 0,
       weight: data['weight'] as int? ?? 0,
       age: data['age'] as int? ?? 0,
@@ -33,14 +33,14 @@ class Ibm {
     };
   }
 
-  Ibm copyWith({
+  Bmi copyWith({
     int? height,
     int? weight,
     int? age,
     double? bmi,
     bool? isMale,
   }) {
-    return Ibm(
+    return Bmi(
       height: height ?? this.height,
       weight: weight ?? this.weight,
       age: age ?? this.age,

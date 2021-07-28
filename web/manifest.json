@@ -1,11 +1,11 @@
 {
-    "name": "ibmapp",
-    "short_name": "ibmapp",
+    "name": "BmiApp",
+    "short_name": "BmiApp",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Bmi Calc",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
