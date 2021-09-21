@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ibmapp">
    <application
-        android:label="ibmapp"
+        android:label="BMI App"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

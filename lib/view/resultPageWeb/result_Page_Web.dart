@@ -1,41 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:ibmapp/view/resultPageWeb/result_Page_Web.dart';
 import 'package:ibmapp/view/widgets/bottom_button.dart';
 import 'package:ibmapp/view/widgets/reusable_Card.dart';
 
-class Result extends StatelessWidget {
-  final String bmiresult, resultText, interpretation;
-  Result(
-      {required this.bmiresult,
-      required this.interpretation,
-      required this.resultText});
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-      if (constraints.minWidth.toInt() <= 690) {
-        return ResultPage(
-          bmiresult: bmiresult,
-          interpretation: interpretation,
-          resultText: resultText,
-        );
-      }
-      return ResultPageWeb(
-        bmiresult: bmiresult,
-        interpretation: interpretation,
-        resultText: resultText,
-      );
-    });
-  }
-}
-
-class ResultPage extends StatelessWidget {
+class ResultPageWeb extends StatelessWidget {
   static String id = 'resultpage';
 
   final String bmiresult, resultText, interpretation;
-  ResultPage(
+  ResultPageWeb(
       {required this.bmiresult,
       required this.interpretation,
       required this.resultText});
@@ -50,16 +22,15 @@ class ResultPage extends StatelessWidget {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Expanded(
-                child: Container(
+            Container(
               padding: EdgeInsets.all(15.0),
               alignment: Alignment.bottomLeft,
               child: Text('Your Result',
-                  style: TextStyle(
-                    fontSize: w * .08,
+                  style: const TextStyle(
+                    fontSize: 50,
                     fontWeight: FontWeight.bold,
                   )),
-            )),
+            ),
             Expanded(
                 flex: 5,
                 child: ReusableCard(

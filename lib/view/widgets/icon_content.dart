@@ -8,12 +8,13 @@ class IconContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.height;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Icon(
           iconData,
-          size: h * .1,
+          size: w * .08,
         ),
         SizedBox(
           height: h * .02,

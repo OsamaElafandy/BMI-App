@@ -2,24 +2,31 @@ import 'package:flutter/material.dart';
 
 class RoundedIconButton extends StatelessWidget {
   final IconData iconData;
+  final double w, h, size;
   final void Function()? onPressed;
 
-  const RoundedIconButton({required this.iconData, required this.onPressed});
+  const RoundedIconButton(
+      {required this.iconData,
+      required this.onPressed,
+      required this.w,
+      required this.size,
+      required this.h});
 
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery.of(context).size.height;
-    double w = MediaQuery.of(context).size.width;
-    return RawMaterialButton(
-      shape: CircleBorder(),
-      onPressed: onPressed,
-      child: Icon(iconData),
-      constraints: BoxConstraints.tightFor(
-        width: w * .12,
-        height: h * .12,
+    return SizedBox(
+      height: h,
+      width: w,
+      child: RawMaterialButton(
+        shape: CircleBorder(),
+        onPressed: onPressed,
+        child: Icon(
+          iconData,
+          size: size,
+        ),
+        elevation: 0,
+        fillColor: Color(0xFF4C4F5E),
       ),
-      elevation: 0,
-      fillColor: Color(0xFF4C4F5E),
     );
   }
 }

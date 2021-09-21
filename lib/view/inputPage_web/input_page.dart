@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:ibmapp/model/bmi.dart';
-
 import 'package:ibmapp/view/resultPage/result_page.dart';
-import 'package:ibmapp/viewModel/bmi.dart';
+import '../../model/bmi.dart';
+import '../../view/resultPageWeb/result_Page_Web.dart';
+import '../../viewModel/bmi.dart';
 import '../../utils/color.dart';
 import '../widgets/bottom_button.dart';
 import '../../view/widgets/reusable_Card.dart';
@@ -13,8 +13,8 @@ import '../widgets/icon_content.dart';
 
 final ibm = StateNotifierProvider<BmiNotifier, Bmi>((ref) => BmiNotifier());
 
-class InputPage extends StatelessWidget {
-  static const String id = '/';
+class InputPageWeb extends StatelessWidget {
+  static const String id = '/input';
 
   @override
   Widget build(BuildContext context) {
@@ -73,11 +73,12 @@ class InputPage extends StatelessWidget {
                 cardChild: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    SizedBox(height: h * .025),
                     Text(
                       'HEIGHT',
-                      style:
-                          TextStyle(fontSize: 18.0, color: Color(0xFF8D8E98)),
+                      style: TextStyle(fontSize: 20, color: Color(0xFF8D8E98)),
                     ),
+                    SizedBox(height: h * .01),
                     Expanded(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -90,15 +91,17 @@ class InputPage extends StatelessWidget {
                               return Text(
                                 state.height.round().toString(),
                                 style: TextStyle(
-                                    fontSize: w * .1,
-                                    fontWeight: FontWeight.w900),
+                                    fontSize: 40, fontWeight: FontWeight.w900),
                               );
                             },
+                          ),
+                          SizedBox(
+                            width: 10,
                           ),
                           Text(
                             'cm',
                             style: TextStyle(
-                              fontSize: w * .04,
+                              fontSize: 15,
                               color: Color(0xFF8D8E98),
                             ),
                           ),
@@ -146,12 +149,12 @@ class InputPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(
-                            height: h * .01,
+                            height: w * .01,
                           ),
                           Text(
                             "WEIGHT",
                             style: TextStyle(
-                                fontSize: 18.0, color: Color(0xFF8D8E98)),
+                                fontSize: 20, color: Color(0xFF8D8E98)),
                           ),
                           Consumer(
                             builder: (context, watch, child) {
@@ -159,7 +162,7 @@ class InputPage extends StatelessWidget {
                               return Text(
                                 state.weight.toString(),
                                 style: TextStyle(
-                                  fontSize: w * .1,
+                                  fontSize: 40,
                                   fontWeight: FontWeight.w900,
                                 ),
                               );
@@ -171,6 +174,9 @@ class InputPage extends StatelessWidget {
                               children: [
                                 RoundedIconButton(
                                   iconData: FontAwesomeIcons.minus,
+                                  h: 55,
+                                  w: 55,
+                                  size: 30,
                                   onPressed:
                                       context.read(ibm.notifier).decreaseWeight,
                                 ),
@@ -179,6 +185,9 @@ class InputPage extends StatelessWidget {
                                 ),
                                 RoundedIconButton(
                                   iconData: FontAwesomeIcons.plus,
+                                  h: 55,
+                                  w: 55,
+                                  size: 30,
                                   onPressed:
                                       context.read(ibm.notifier).increaseWeight,
                                 ),
@@ -186,7 +195,7 @@ class InputPage extends StatelessWidget {
                             ),
                           ),
                           SizedBox(
-                            height: h * .01,
+                            height: w * .01,
                           ),
                         ],
                       ),
@@ -199,12 +208,12 @@ class InputPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(
-                            height: h * .01,
+                            height: w * .01,
                           ),
                           Text(
                             "AGE",
                             style: TextStyle(
-                                fontSize: 18.0, color: Color(0xFF8D8E98)),
+                                fontSize: 20, color: Color(0xFF8D8E98)),
                           ),
                           Consumer(
                             builder: (context, watch, child) {
@@ -212,8 +221,7 @@ class InputPage extends StatelessWidget {
                               return Text(
                                 state.age.toString(),
                                 style: TextStyle(
-                                    fontSize: w * .1,
-                                    fontWeight: FontWeight.w900),
+                                    fontSize: 40, fontWeight: FontWeight.w900),
                               );
                             },
                           ),
@@ -223,6 +231,9 @@ class InputPage extends StatelessWidget {
                               children: [
                                 RoundedIconButton(
                                   iconData: FontAwesomeIcons.minus,
+                                  h: 55,
+                                  w: 55,
+                                  size: 30,
                                   onPressed:
                                       context.read(ibm.notifier).decreaseAge,
                                 ),
@@ -231,6 +242,9 @@ class InputPage extends StatelessWidget {
                                 ),
                                 RoundedIconButton(
                                   iconData: FontAwesomeIcons.plus,
+                                  h: 55,
+                                  w: 55,
+                                  size: 30,
                                   onPressed:
                                       context.read(ibm.notifier).increaseAge,
                                 ),
@@ -253,7 +267,7 @@ class InputPage extends StatelessWidget {
                 context.read(ibm.notifier).calculateBMI();
                 var bmi = context.read(ibm.notifier).bmiGet();
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => ResultPage(
+                    builder: (context) => Result(
                           bmiresult: bmi,
                           interpretation:
                               context.read(ibm.notifier).getInterpretation(),
