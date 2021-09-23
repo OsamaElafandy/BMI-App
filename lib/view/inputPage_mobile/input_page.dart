@@ -23,6 +23,7 @@ class InputPage extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: inActiveCardColor,
           title: Text('BMI CALCULATOR'),
         ),
         body: Column(
@@ -151,7 +152,7 @@ class InputPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(
-                            height: w * .01,
+                            height: w * .03,
                           ),
                           Text(
                             "WEIGHT",
@@ -176,9 +177,9 @@ class InputPage extends StatelessWidget {
                               children: [
                                 RoundedIconButton(
                                   iconData: FontAwesomeIcons.minus,
-                                  h: 60,
-                                  w: 60,
-                                  size: 35,
+                                  h: 45,
+                                  w: 45,
+                                  size: 25,
                                   onPressed:
                                       context.read(ibm.notifier).decreaseWeight,
                                 ),
@@ -187,9 +188,9 @@ class InputPage extends StatelessWidget {
                                 ),
                                 RoundedIconButton(
                                   iconData: FontAwesomeIcons.plus,
-                                  h: 60,
-                                  w: 60,
-                                  size: 35,
+                                  h: 45,
+                                  w: 45,
+                                  size: 25,
                                   onPressed:
                                       context.read(ibm.notifier).increaseWeight,
                                 ),
@@ -210,7 +211,7 @@ class InputPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(
-                            height: w * .01,
+                            height: w * .03,
                           ),
                           Text(
                             "AGE",
@@ -234,9 +235,9 @@ class InputPage extends StatelessWidget {
                               children: [
                                 RoundedIconButton(
                                   iconData: FontAwesomeIcons.minus,
-                                  h: 60,
-                                  w: 60,
-                                  size: 35,
+                                  h: 45,
+                                  w: 45,
+                                  size: 25,
                                   onPressed:
                                       context.read(ibm.notifier).decreaseAge,
                                 ),
@@ -245,9 +246,9 @@ class InputPage extends StatelessWidget {
                                 ),
                                 RoundedIconButton(
                                   iconData: FontAwesomeIcons.plus,
-                                  h: 60,
-                                  w: 60,
-                                  size: 35,
+                                  h: 45,
+                                  w: 45,
+                                  size: 25,
                                   onPressed:
                                       context.read(ibm.notifier).increaseAge,
                                 ),

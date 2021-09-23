@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ibmapp/utils/color.dart';
 import 'package:ibmapp/view/widgets/bottom_button.dart';
 import 'package:ibmapp/view/widgets/reusable_Card.dart';
 
@@ -17,6 +18,7 @@ class ResultPageWeb extends StatelessWidget {
     double w = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: inActiveCardColor,
           title: Text('BMI CALCULATOR'),
         ),
         body: Column(

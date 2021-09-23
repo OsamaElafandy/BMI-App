@@ -23,6 +23,7 @@ class InputPageWeb extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: inActiveCardColor,
           title: Text('BMI CALCULATOR'),
         ),
         body: Column(
