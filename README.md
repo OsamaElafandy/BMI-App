@@ -16,13 +16,13 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 
 ## Photos
-# Mobile
+### Mobile
 
 ![alt text](https://i.ibb.co/b5QqjBk/bmi2.jpg) 
 
 ![alt text](https://i.ibb.co/fr5M37Y/bmi1.jpg)
 
-# Web 
+### Web 
 
 ![alt text](https://i.ibb.co/bgJxpcQ/web1.png)
 
