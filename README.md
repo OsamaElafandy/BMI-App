@@ -1,4 +1,4 @@
-# ibmapp
+# bmiapp
 
 A new Flutter project.
 
